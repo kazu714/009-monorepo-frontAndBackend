@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engine": {
+    "pnpm": "9.9.0",
+    "npm": "please_use_pnpm_instead"
+  },
+  "packageMnager": "pnpm@7.20.0",
+  "scripts": {
+    "dev": "concurrently \"pnpm -F web dev\" \"pnpm -F api dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
