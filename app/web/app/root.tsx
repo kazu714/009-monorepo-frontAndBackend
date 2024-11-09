@@ -9,6 +9,9 @@ import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 
+import * as apolloClient from "@apollo/client";
+const { ApolloClient, ApolloProvider, InMemoryCache } = apolloClient;
+
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -22,6 +25,13 @@ export const links: LinksFunction = () => [
   },
 ];
 
+const cache = new InMemoryCache();
+const client = new ApolloClient({
+  ssrMode: true,
+  cache: cache,
+  uri: "http://localhost:4000/graphql",
+});
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -32,7 +42,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ApolloProvider client={client}>
+          {children}
+        </ApolloProvider>,
         <ScrollRestoration />
         <Scripts />
       </body>

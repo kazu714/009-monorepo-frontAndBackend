@@ -8,7 +8,7 @@ builder.prismaObject('Todo', {
     })
 })
 
-builder.queryField('Todos', (t) => 
+builder.queryField('todos', (t) => 
     t.prismaField({
         type:['Todo'],
         resolve: async (query,root, args,ctx,info) => {
